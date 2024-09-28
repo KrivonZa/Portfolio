@@ -1,23 +1,11 @@
-import { router } from "./router";
-import { useEffect } from "react";
-import { useRoutes, useLocation } from "react-router-dom";
-
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return null;
-};
+import React from "react";
+import { Home } from "./components/mainPage";
 
 function App() {
   return (
     <div className="App">
-      <ScrollToTop />
       <div className="flex-grow">
-        {useRoutes(router)}
+        <Home />
       </div>
     </div>
   );
