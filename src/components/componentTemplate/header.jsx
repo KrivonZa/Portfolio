@@ -1,55 +1,33 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+
+const Navigation = ({ page, setPage }) => (
+  <nav className="bg-[#0c0a20] bg-opacity-70 text-white py-4 px-8 xl:rounded-bl-3xl text-lg font-semibold">
+    <ul className="flex space-x-8">
+      {["about", "certificates", "projects", "contact"].map((item) => (
+        <li key={item}>
+          <a
+            className={`hover:text-[#ffae13] hover:cursor-pointer duration-300 ${
+              page === item ? "text-[#ffae13]" : ""
+            }`}
+            onClick={() => setPage(item)}
+          >
+            {item.charAt(0).toUpperCase() + item.slice(1)}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+);
 
 export const Header = ({ page, setPage }) => {
-  const navigate = useNavigate();
-
   return (
-    <div className="z-10 flex justify-end">
-      <nav className="bg-[#0c0a20] bg-opacity-70 text-white py-4 px-8 absolute rounded-bl-3xl text-lg font-semibold">
-        <ul className="flex space-x-8 ">
-          <li>
-            <a
-              className={`hover:text-[#ffae13] hover:cursor-pointer duration-300 ${
-                page === "about" ? "text-[#ffae13]" : ""
-              }`}
-              onClick={() => setPage("about")}
-            >
-              About
-            </a>
-          </li>
-          <li>
-            <a
-              className={`hover:text-[#ffae13] hover:cursor-pointer duration-300 ${
-                page === "certificates" ? "text-[#ffae13]" : ""
-              }`}
-              onClick={() => setPage("certificates")}
-            >
-              Certificates
-            </a>
-          </li>
-          <li>
-            <a
-              className={`hover:text-[#ffae13] hover:cursor-pointer duration-300 ${
-                page === "projects" ? "text-[#ffae13]" : ""
-              }`}
-              onClick={() => setPage("projects")}
-            >
-              Projects
-            </a>
-          </li>
-          <li>
-            <a
-              className={`hover:text-[#ffae13] hover:cursor-pointer duration-300 ${
-                page === "contact" ? "text-[#ffae13]" : ""
-              }`}
-              onClick={() => setPage("contact")}
-            >
-              Contact
-            </a>
-          </li>
-        </ul>
-      </nav>
+    <div>
+      <div className="z-10 hidden justify-end xl:flex fixed top-0 right-0 w-full">
+        <Navigation page={page} setPage={setPage} />
+      </div>
+      <div className="fixed bottom-0 w-full xl:hidden">
+        <Navigation page={page} setPage={setPage} />
+      </div>
     </div>
   );
 };
