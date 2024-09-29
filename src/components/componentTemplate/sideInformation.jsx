@@ -1,64 +1,81 @@
-import React, { useState, useEffect } from "react";
-import "./styles.css";
-
-// Component tạo hiệu ứng đánh chữ với vòng lặp
-const TypingEffectLoop = ({ texts, speed = 100, delay = 1000 }) => {
-  const [displayText, setDisplayText] = useState("");
-  const [index, setIndex] = useState(0);   // Chỉ số của ký tự đang được đánh
-  const [textIndex, setTextIndex] = useState(0); // Chỉ số của câu văn đang được đánh
-
-  useEffect(() => {
-    if (index < texts[textIndex].length) {
-      const timeout = setTimeout(() => {
-        setDisplayText(displayText + texts[textIndex][index]);
-        setIndex(index + 1);
-      }, speed);
-
-      return () => clearTimeout(timeout);
-    } else {
-      // Khi đánh xong một câu, tạm dừng một chút rồi chuyển sang câu tiếp theo
-      const timeout = setTimeout(() => {
-        setDisplayText("");
-        setIndex(0);
-        setTextIndex((prevTextIndex) => (prevTextIndex + 1) % texts.length); // Lặp vòng qua các đoạn văn bản
-      }, delay);
-
-      return () => clearTimeout(timeout);
-    }
-  }, [index, texts, textIndex, displayText, speed, delay]);
-
-  // Tìm đoạn văn bản dài nhất để đặt chiều cao cố định
-  const longestText = texts.reduce((a, b) => (a.length > b.length ? a : b), "");
-
-  return (
-    // Đặt chiều cao cố định dựa trên đoạn văn bản dài nhất
-    <div style={{ minHeight: "1.5em", whiteSpace: "nowrap" }}>
-      <span>{displayText}</span>
-    </div>
-  );
-};
+import React from "react";
+import { TypeAnimation } from "react-type-animation";
+import CountUp from "react-countup";
+import {
+  IoHourglassOutline,
+  IoLocationOutline,
+  IoPersonOutline,
+} from "react-icons/io5";
 
 export const SideInformation = () => {
   return (
-    <div className="px-16 py-8 flex flex-col items-center w-[25vw]">
-      <div className="border-black border w-32 h-32 rounded-3xl overflow-hidden">
-        <img src="../public/Image.png" className="w-full h-full object-cover" />
+    <div className="p-8 flex flex-col items-center w-[25vw] shadow-lg rounded-3xl">
+      {/* Avatar */}
+      <div className="border-4 border-white w-32 h-32 rounded-full overflow-hidden shadow-md">
+        <img src="/Image.png" className="w-full h-full object-cover" />
       </div>
-      <div className="text-xl text-center mt-4 font-medium">Truong Tan Dung</div>
-      
-      <div className="text-lg font-mono border-r-2 m-2 text-center">
-        <TypingEffectLoop
-          texts={[
+
+      {/* Name */}
+      <div className="text-2xl text-white text-center mt-6 font-semibold">
+        Truong Tan Dung
+      </div>
+
+      {/* Animated Roles */}
+      <div className="text-lg text-gray-200 font-mono m-2 text-center">
+        <TypeAnimation
+          sequence={[
             "Programmer",
+            1000,
             "Translator",
+            1000,
             "Gamer",
+            1000,
             "Traveller",
+            1000,
             "Coffee Addict",
+            1000,
             "Music Lover",
+            1000,
           ]}
           speed={50}
-          delay={1000}
+          wrapper="span"
+          repeat={Infinity}
         />
+      </div>
+
+      {/* Divider */}
+      <hr className="border-t border-white opacity-50 my-6 w-full" />
+
+      {/* Information List */}
+      <div className="space-y-6 w-full text-white">
+        {/* Age */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <IoHourglassOutline className="text-2xl" />
+            <div className="text-sm font-light">Age</div>
+          </div>
+          <div className="text-lg">
+            <CountUp end={21} duration={3} />
+          </div>
+        </div>
+
+        {/* Location */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <IoLocationOutline className="text-2xl" />
+            <div className="text-sm font-light">Location</div>
+          </div>
+          <div className="text-lg">Viet Nam</div>
+        </div>
+
+        {/* Personality Type */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <IoPersonOutline className="text-2xl" />
+            <div className="text-sm font-light">Personality Type</div>
+          </div>
+          <div className="text-lg">INTJ</div>
+        </div>
       </div>
     </div>
   );
