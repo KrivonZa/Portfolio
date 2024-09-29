@@ -8,7 +8,7 @@ export const Contact = () => {
   }, []);
 
   return (
-    <div className="w-full py-14 px-4">
+    <div className="w-[50vw] py-14 px-4">
       <div
         className={`duration-700 ${
           isLoaded ? "opacity-100 translate-0" : "opacity-0 translate-x-20"
