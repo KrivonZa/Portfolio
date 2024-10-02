@@ -69,7 +69,7 @@ export const SideInformation = () => {
         {/* Age */}
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <IoHourglassOutline className="text-2xl sm:text-3xl" />
+            <IoHourglassOutline className="text-2xl sm:text-3xl text-[#ffae13]" />
             <div className="text-sm sm:text-base md:text-lg font-medium text-[#ffae13]">Age</div>
           </div>
           <div className="text-sm sm:text-base md:text-lg lg:text-xl">
@@ -81,7 +81,7 @@ export const SideInformation = () => {
         {/* Location */}
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <IoLocationOutline className="text-2xl sm:text-3xl" />
+            <IoLocationOutline className="text-2xl sm:text-3xl text-[#ffae13]" />
             <div className="text-sm sm:text-base md:text-lg font-medium text-[#ffae13]">Location</div>
           </div>
           <div className="text-sm sm:text-base md:text-lg lg:text-xl">Viet Nam</div>
@@ -90,7 +90,7 @@ export const SideInformation = () => {
         {/* Personality Type */}
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <IoPersonOutline className="text-2xl sm:text-3xl" />
+            <IoPersonOutline className="text-2xl sm:text-3xl text-[#ffae13]" />
             <div className="text-sm sm:text-base md:text-lg font-medium text-[#ffae13]">
               Personality Type
             </div>
